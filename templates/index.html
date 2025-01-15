@@ -2,20 +2,33 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse-use demo</title>
+    <!-- Bootstrap CSSを追加 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2>タスクを入力してください</h2>
-    <form method="post">
-        <textarea name="task" rows="10" cols="50"></textarea><br>
-        <button type="submit">実行</button>
-    </form>
-    {% if result_content and result_json %}
-    <h2>結果</h2>
-    <h3>回答内容</h3>
-    <pre>{{ result_content }}</pre>
-    <h3>実行ログ</h3>
-    <pre>{{ result_json }}</pre>
-    {% endif %}
+    <div class="container mt-5">
+        <h2 class="mb-4">タスクを入力してください</h2>
+        <form method="post">
+            <div class="form-group">
+                <textarea name="task" class="form-control" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">実行</button>
+        </form>
+        {% if result_content and result_json %}
+        <div class="mt-5">
+            <h2>結果</h2>
+            <h3>回答内容</h3>
+            <pre class="bg-light p-3">{{ result_content }}</pre>
+            <h3>実行ログ</h3>
+            <pre class="bg-light p-3">{{ result_json }}</pre>
+        </div>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JSと依存関係を追加 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -14,6 +14,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     result = None
+    result_json_str = None
+    result_content = None
     if request.method == 'POST':
         task = request.form['task'] + " 日本語で回答してください。"
         result = asyncio.run(run_agent(task))
