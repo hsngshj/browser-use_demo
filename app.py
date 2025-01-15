@@ -18,7 +18,8 @@ def index():
     result_content = None
     if request.method == 'POST':
         task = request.form['task'] + " 日本語で回答してください。"
-        result = asyncio.run(run_agent(task))
+        model = request.form['model']  # 選択されたモデルを取得
+        result = asyncio.run(run_agent(task, model))
                             
         # AgentHistoryListオブジェクトを辞書に変換
         if hasattr(result, 'to_dict'):
@@ -33,10 +34,10 @@ def index():
         
     return render_template('index.html', result=result, result_json=result_json_str, result_content=result_content)
 
-async def run_agent(task):
+async def run_agent(task, model):
     agent = Agent(
         task=task,
-        llm=ChatOpenAI(model="gpt-4o-mini", api_key=os.getenv("OPENAI_API_KEY")),
+        llm=ChatOpenAI(model=model, api_key=os.getenv("OPENAI_API_KEY")),  # モデルを使用
     )
     result = await agent.run()
     return result
