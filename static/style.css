@@ -1,0 +1,23 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 800px;
+}
+
+.result-section {
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+h3 {
+font-size: 1.3rem;
+}

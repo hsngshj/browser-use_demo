@@ -4,24 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse-use demo</title>
-    <!-- Bootstrap CSSを追加 -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">タスクを入力してください</h2>
-        <form method="post">
+        <h1 class="mb-5 text-center">Browse-use demo</h1>
+        <p>
+            これはBrowser-useのデモアプリです。
+            <br>
+            生成AIに実行させたいWEBブラウザの処理を教えて下さい。
+        </p>
+        <form method="post" onsubmit="setButtonLoadingState()">
+            <h2 class="mb-1">1. タスクを入力してください</h2>
             <div class="form-group">
                 <textarea name="task" class="form-control" rows="10"></textarea>
             </div>
-            <div class="form-group">
-                <label for="model">モデルを選択してください:</label>
+            <div class="form-group mb-5">
+                <h2>
+                    <label for="model">2. 上記タスクを実行するLLMを選択してください</label>
+                </h2>
                 <select name="model" class="form-control">
                     <option value="gpt-4o-mini">gpt-4o-mini</option>
                     <option value="gpt-4o">gpt-4o</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">実行</button>
+            <div class="container text-center">
+                <button type="submit" class="btn btn-primary btn-lg w-100" id="executeButton" disabled>実行</button>
+            </div>
         </form>
         {% if result_content and result_json %}
         <div class="mt-5">
@@ -33,7 +44,6 @@
         </div>
         {% endif %}
     </div>
-    <!-- Bootstrap JSと依存関係を追加 -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
